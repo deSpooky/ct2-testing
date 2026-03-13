@@ -8,7 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 chrome_options = Options()
-chrome_options.add_argument("window")
 
 chrome_options.page_load_strategy = "eager"
 

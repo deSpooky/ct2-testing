@@ -5,9 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
-
 chrome_options = Options()
-chrome_options.add_argument("window")
 
 chrome_options.page_load_strategy = "eager"
 

@@ -7,9 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-
 chrome_options = Options()
-chrome_options.add_argument("window")
 
 chrome_options.page_load_strategy = "eager"
 
@@ -34,6 +32,19 @@ try:
     )
 
     button.click()
+
+    time.sleep(1)
+
+    cart = wait.until(
+    EC.element_to_be_clickable((By.CLASS_NAME, "header__cart"))
+)
+    cart.click()
+
+    item = driver.find_element(By.CLASS_NAME, "item-title")
+    price = driver.find_element(By.CSS_SELECTOR, "[data-cart-item-total-price]")
+
+    assert "Шоколадные Шарики Milka Melo Cakes" in item.text
+    assert "350" in price.text  
 
 finally:
     time.sleep(5)
