@@ -43,8 +43,8 @@ try:
     item = driver.find_element(By.CLASS_NAME, "item-title")
     price = driver.find_element(By.CSS_SELECTOR, "[data-cart-item-total-price]")
 
-    assert "Шоколадные Шарики Milka Melo Cakes" in item.text
-    assert "350" in price.text  
+    assert "Чипсы Pringles со вкусом Spicy Rose Tteokbokki со вкусом остро-сырного токпокки" in item.text
+    assert "390" in price.text  
 
 finally:
     time.sleep(5)
