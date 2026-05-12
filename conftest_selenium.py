@@ -1,3 +1,5 @@
+from os import name
+
 import pytest
 from selenium import webdriver
 
@@ -11,21 +13,18 @@ def pytest_addoption(parser):
 
 @pytest.fixture(scope="session")
 def browser(request):
-    browser_name = request.config.getoption("browser")
-    user_language = request.config.getoption("language")
-    
-    if browser_name == "firefox":
+    if request.config.getoption("browser") == "Firefox":
         options = FirefoxOptions()
-        options.set_preference("intl.accept_languages", user_language)
-    elif browser_name == "edge":
+    elif request.config.getoption("browser") == "Edge":
         options = EdgeOptions()
     else:  
         options = ChromeOptions()
         options.page_load_strategy = 'normal'
-        options.add_experimental_option("prefs", {"intl.accept_languages": user_language})
+        options.add_experimental_option(name= "prefs", value= {"intl.accept_language":
+            request.config.getoption("language")})
 
     browser = webdriver.Remote(
-        command_executor="http://localhost:4444",
+        command_executor="http://10.11.19.21:4444",
         options=options
     )
     
